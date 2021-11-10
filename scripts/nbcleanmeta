@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
+from wagon_cleaner.run_stats import run_stats
+from wagon_cleaner.run_clean import run_clean
+
+import click
+
+
+@click.group()
+def waclean():
+    pass
+
+
+@waclean.command()
+@click.argument(
+    "sources",
+    nargs=-1,
+    type=click.Path(exists=True))
+@click.option(
+    "-v", "--verbose",
+    default=False,
+    is_flag=True,
+    help="Details command behavior.")
+def stats(sources, verbose):
+    """
+    Output stats on notebook meta data.
+    """
+
+    # output stats
+    run_stats(sources, verbose)
+
+
+@waclean.command()
+@click.argument(
+    "sources",
+    nargs=-1,
+    type=click.Path(exists=True))
+@click.option(
+    "-v", "--verbose",
+    default=False,
+    is_flag=True,
+    help="Details command behavior.")
+@click.option(
+    "-x", "--execution-count",                    # execution_count
+    default=False,
+    is_flag=True,
+    help="Delete \"execution_count\" data from all cells.")
+@click.option(
+    "-s", "--meta-scrolled",                      # metadata.scrolled
+    default=False,
+    is_flag=True,
+    help="Delete \"scrolled\" metadata from all cells.")
+@click.option(
+    "-t", "--meta-executetime",                   # metadata.ExecuteTime
+    default=False,
+    is_flag=True,
+    help="Delete \"ExecuteTime\" metadata from all cells.")
+@click.option(
+    "-h", "--meta-hidden",                        # metadata.hidden
+    default=False,
+    is_flag=True,
+    help="Delete \"hidden\" metadata from all cells.")
+@click.option(
+    "-c", "--meta-collapsed",                     # metadata.collapsed
+    default=False,
+    is_flag=True,
+    help="Delete \"collapsed\" metadata from all cells.")
+@click.option(
+    "-d", "--meta-heading-collapsed",             # metadata.heading_collapsed
+    default=False,
+    is_flag=True,
+    help="Delete \"heading_collapsed\" metadata from all cells.")
+@click.option(
+    "--all/--no-all",
+    default=True,
+    help="Clean all supported cell data and metadata (default: all).")
+@click.option(
+    "--delete-notes",
+    default=False,
+    is_flag=True,
+    help="Remove cells with slide type set as notes.")
+def run(sources, verbose, all, delete_notes, **kwargs):
+    """
+    Format notebooks according to policy.
+    """
+
+    # handle all flag
+    if all:
+
+        # set all suppressions to true
+        kwargs = { k:True for k, _ in kwargs.items() }
+
+    # format notebook
+    run_clean(sources, verbose, delete_notes, kwargs)
+
+
+if __name__ == "__main__":
+    waclean()

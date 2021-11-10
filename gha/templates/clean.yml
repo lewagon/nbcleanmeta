@@ -1,0 +1,38 @@
+name: Clean notebooks metadata
+on:
+  push:
+    branches: master
+  pull_request:
+    types: [synchronize, opened]
+jobs:
+  clean-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install requirements
+        run: |
+          pip install -U pip
+          pip install git+https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/lewagon/utils.git#subdirectory=wagon_common
+          pip install git+https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/lewagon/utils.git#subdirectory=nbcleanmeta
+      - name: Cleaning
+        id: cleaning
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git diff --name-only --diff-filter AM "origin/${{ github.event.repository.default_branch }}" | sed 's/^/"/g' | sed 's/$/"/g' | tr '\n' ' ' | nbcleanmeta run
+          if ! git diff --exit-code; then
+            git add .
+            git commit -m "clean notebooks metadata"
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+                CLEAN_REMOTE_BRANCH="${{ github.event.pull_request.head.ref }}"
+              else
+                CLEAN_REMOTE_BRANCH="${{ github.event.repository.default_branch }}"
+            fi
+            git push origin HEAD:$CLEAN_REMOTE_BRANCH
+          fi
