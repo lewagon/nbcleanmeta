@@ -15,6 +15,12 @@ pip uninstall -y nbcleanmeta
 pip uninstall -y wagon_common
 ```
 
+# aliases
+
+``` bash
+alias nbc="nbcleanmeta $@"
+```
+
 # about
 
 clean notebook cell data and metadata in order to maintain clear git diffs
