@@ -16,8 +16,8 @@ jobs:
       - name: Install requirements
         run: |
           pip install -U pip
-          pip install git+https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/lewagon/utils.git#subdirectory=wagon_common
-          pip install git+https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/lewagon/utils.git#subdirectory=nbcleanmeta
+          pip install git+https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/lewagon/wagon_common.git
+          pip install git+https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/lewagon/nbcleanmeta.git
       - name: Cleaning
         id: cleaning
         run: |
