@@ -1,7 +1,5 @@
 name: Clean notebooks metadata
 on:
-  push:
-    branches: master
   pull_request:
     types: [synchronize, opened]
 jobs:
@@ -25,7 +23,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git diff --name-only --diff-filter AM "origin/${{ github.event.repository.default_branch }}" | sed 's/^/"/g' | sed 's/$/"/g' | tr '\n' ' ' | nbcleanmeta run
+          git diff --name-only --diff-filter AM "origin/${{ github.event.repository.default_branch }}" | sed 's/^/"/g' | sed 's/$/"/g' | tr '\n' ' ' | xargs nbcleanmeta run
           if ! git diff --exit-code; then
             git add .
             git commit -m "clean notebooks metadata"
