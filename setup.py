@@ -1,7 +1,7 @@
 
-import os
-
 from setuptools import setup, find_packages
+
+import os
 
 with open("requirements.txt") as f:
     requirements = [c.strip() for c in f.readlines()]
