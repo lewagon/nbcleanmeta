@@ -1,0 +1,35 @@
+name: "Test Package And Dependencies Install from Gemfury"
+
+on:
+  pull_request:
+    types: [synchronize, opened]
+
+jobs:
+  test-package-install-from-gemfury:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Create pip conf file
+        run: |
+          mkdir ~/.pip
+          cat <<EOT >> ~/.pip/pip.conf
+          [global]
+          trusted-host = pypi.fury.io
+          extra-index-url = https://${{ secrets.GEMFURY_PULL_SECRET }}@pypi.fury.io/ssaunier
+          EOT
+
+      - name: Install package and dependencies
+        run: |
+          pip install wagon_common
+          pip install nbcleanmeta
+
+      - name: Run Package
+        run: |
+          nbcleanmeta stats .
