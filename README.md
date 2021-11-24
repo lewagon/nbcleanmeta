@@ -1,11 +1,25 @@
 
 # install
 
-🚨 `wagon_common` is required as a dependency but is not yet published to PyPI and needs to be manually installed first
+from gemfury with `~/.pip/pip.conf`:
 
 ``` bash
-pip install git+ssh://git@github.com/lewagon/utils.git#subdirectory=wagon_common
-pip install git+ssh://git@github.com/lewagon/utils.git#subdirectory=nbcleanmeta
+pip install wagon_common
+pip install nbcleanmeta
+```
+
+from gemfury with index url:
+
+``` bash
+pip install wagon_common --extra-index-url https://$GEMFURY_PULL_TOKEN@pypi.fury.io/ssaunier
+pip install nbcleanmeta --extra-index-url https://$GEMFURY_PULL_TOKEN@pypi.fury.io/ssaunier
+```
+
+from github:
+
+``` bash
+pip install git+ssh://git@github.com/lewagon/python-utilities.git
+pip install git+ssh://git@github.com/lewagon/nbcleanmeta.git
 ```
 
 # uninstall
@@ -13,6 +27,12 @@ pip install git+ssh://git@github.com/lewagon/utils.git#subdirectory=nbcleanmeta
 ``` bash
 pip uninstall -y nbcleanmeta
 pip uninstall -y wagon_common
+```
+
+# aliases
+
+``` bash
+alias nbc="nbcleanmeta $@"
 ```
 
 # about
