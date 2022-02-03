@@ -1,6 +1,6 @@
 
 # 0.2.2 (2022-02-03)
 
-### Fixed
+### Removed
 
-- Fix bug when no arguments are passed to the command
+- Removes the `clean-metadata` gha which is now published on the [.github](https://github.com/lewagon/.github/blob/main/workflow-templates/clean-metadata.yml) repo
