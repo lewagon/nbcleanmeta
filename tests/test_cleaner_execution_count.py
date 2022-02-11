@@ -28,9 +28,9 @@ class TestCleanerExecutionCount:
         src_path = os.path.join(os.path.dirname(__file__), 'notebooks', 'base.ipynb')
         self._mix_up_execution_count(src_path)
         run_clean([src_path], False, False, {"execution_count": True})
-        clean_content = read_notebook(src_path)
 
         # Perform test
+        clean_content = read_notebook(src_path)
         code_cells = self._get_code_cells(clean_content)
         for cell in code_cells:
             if cell.get('outputs', False) and bool(cell['outputs']):
