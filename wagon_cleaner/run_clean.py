@@ -62,13 +62,13 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
 
             # set key content
             if key in cell:
-                cell[key] = null  # execution_count must not be deleted
+                cell[key] = None  # execution_count must not be deleted but set to None
 
         # cleaning outputs execution_count
         if "outputs" in cell:
             for index, output in enumerate(cell["outputs"]):
                 if "execution_count" in output:
-                    cell["outputs"][index]["execution_count"] = null
+                    cell["outputs"][index]["execution_count"] = None
 
         # cleaning cell metadata
         if "metadata" in cell:
