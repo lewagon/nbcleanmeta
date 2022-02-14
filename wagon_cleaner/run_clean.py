@@ -51,26 +51,32 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
             slideshow = metadata.get("slideshow", {})
             slide_type = slideshow.get("slide_type", "")
 
-            # testing cell type
+            # test cell type
             if slide_type == "notes":
 
                 # mark cell to be deleted
                 delete_cells.append(index)
 
-        # cleaning cell data
+        # clean cell data
         for key in clean_cell_keys:
 
             # set key content
             if key in cell:
                 cell[key] = None  # execution_count must not be deleted but set to None
 
-        # cleaning outputs execution_count
-        if "outputs" in cell:
-            for index, output in enumerate(cell["outputs"]):
-                if "execution_count" in output:
-                    cell["outputs"][index]["execution_count"] = None
+        # clean outputs
+        for output in cell.get("outputs", []):
 
-        # cleaning cell metadata
+            # clean outputs execution_count
+            if "execution_count" in output:
+                output["execution_count"] = None
+
+            # clean outputs data image trailing newline
+            for data_key in output.get("data", {}):
+                if data_key[:6] == "image/":
+                    output["data"][data_key] = output["data"][data_key].rstrip("\n")
+
+        # clean cell metadata
         if "metadata" in cell:
 
             for key in clean_meta_keys:
@@ -79,7 +85,7 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
                 if key in cell["metadata"]:
                     del cell["metadata"][key]
 
-    # deleted flagged cells
+    # delete flagged cells
     if delete_notes:
 
         # get cells
