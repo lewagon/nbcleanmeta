@@ -8,5 +8,5 @@
 
 ### Changed
 
-- Sets `wagon_common` dependency minimal version
+- Requires `wagon_common` version `>=0.2.3`
 - `execution_count` are now set to `null` instead of `0`
