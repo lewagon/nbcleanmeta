@@ -18,6 +18,7 @@ class TestCleanerExecutionCount(TestCleanerBase):
         code_cells = self._get_code_cells(clean_content)
         for cell in code_cells:
             assert cell['execution_count'] is not None
+            assert type(cell['execution_count']) == int
 
     def test_input_execution_count_is_null(self, notebook_path):
         # Act
