@@ -6,6 +6,17 @@ from wagon_common.helpers.notebook import read_notebook
 
 class TestCleanerExecutionCount(TestCleanerBase):
 
+    def test_input_execution_count_no_clean(self, notebook_path):
+        # Act
+        # test that exec count are present when no action is performed
+        # run_clean([notebook_path], False, False, {"execution_count": True})
+
+        # Assert
+        clean_content = read_notebook(notebook_path)
+        code_cells = self._get_code_cells(clean_content)
+        for cell in code_cells:
+            assert cell['execution_count'] is not None
+
     def test_input_execution_count_is_null(self, notebook_path):
         # Act
         run_clean([notebook_path], False, False, {"execution_count": True})
