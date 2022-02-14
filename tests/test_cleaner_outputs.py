@@ -7,9 +7,11 @@ from wagon_common.helpers.notebook import read_notebook
 class TestCleanerOutputs(TestCleanerBase):
 
     def test_outputs_data_trailing_newline_is_present(self, notebook_path):
+        """
+        # test that newlines are present when no action is performed
+        """
         # Act
-        # test that newline is present when no action is performed
-        # run_clean([notebook_path], False, False, {})
+        # no action is performed
 
         # Assert
         clean_content = read_notebook(notebook_path)

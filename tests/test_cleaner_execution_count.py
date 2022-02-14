@@ -7,9 +7,11 @@ from wagon_common.helpers.notebook import read_notebook
 class TestCleanerExecutionCount(TestCleanerBase):
 
     def test_input_execution_count_no_clean(self, notebook_path):
+        """
+        # test that exec count integers are present when no action is performed
+        """
         # Act
-        # test that exec count are present when no action is performed
-        # run_clean([notebook_path], False, False, {"execution_count": True})
+        # no action is performed
 
         # Assert
         clean_content = read_notebook(notebook_path)
