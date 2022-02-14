@@ -1,3 +1,5 @@
+import pytest
+
 import os
 
 from random import randint
@@ -8,36 +10,38 @@ from wagon_common.helpers.notebook import read_notebook, save_notebook
 
 class TestCleanerExecutionCount:
 
-    def test_input_execution_count_is_null(self):
-        # Set up test
+    @pytest.fixture
+    def notebook_path(self):
+        # Arrange
         src_path = os.path.join(os.path.dirname(__file__), 'notebooks', 'base.ipynb')
         self._mix_up_execution_count(src_path)
-        run_clean([src_path], False, False, {"execution_count": True})
 
-        # Perform test
-        clean_content = read_notebook(src_path)
+        # Act & Assert
+        yield src_path
+
+        # Cleanup
+        self._get_base_nb_back(src_path)
+
+    def test_input_execution_count_is_null(self, notebook_path):
+        # Act
+        run_clean([notebook_path], False, False, {"execution_count": True})
+
+        # Assert
+        clean_content = read_notebook(notebook_path)
         code_cells = self._get_code_cells(clean_content)
         for cell in code_cells:
             assert cell['execution_count'] is None
 
-        # Tear down test
-        self._get_base_nb_back(src_path)
+    def test_outputs_execution_count_is_null(self, notebook_path):
+        # Act
+        run_clean([notebook_path], False, False, {"execution_count": True})
 
-    def test_outputs_execution_count_is_null(self):
-        # Set up test
-        src_path = os.path.join(os.path.dirname(__file__), 'notebooks', 'base.ipynb')
-        self._mix_up_execution_count(src_path)
-        run_clean([src_path], False, False, {"execution_count": True})
-
-        # Perform test
-        clean_content = read_notebook(src_path)
+        # Assert
+        clean_content = read_notebook(notebook_path)
         code_cells = self._get_code_cells(clean_content)
         for cell in code_cells:
             if cell.get('outputs', False) and bool(cell['outputs']):
                 assert cell['outputs'][0]['execution_count'] is None
-
-        # Tear down test
-        self._get_base_nb_back(src_path)
 
     def _get_code_cells(self, content):
         return [cell for cell in content['cells'] if cell['cell_type'] == 'code']
