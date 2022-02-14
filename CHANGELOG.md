@@ -4,6 +4,7 @@
 ### Added
 
 - Adds a `CHANGELOG.md` file
+- Cleans `outputs` `data` `image/*` trailing newline
 - Adds tests for `execution_count` cleaning
 - Adds tests for `outputs` `data` `image/*` trailing newline cleaning
 - Add `run-test` gha
@@ -12,4 +13,3 @@
 
 - Requires `wagon_common` version `>=0.2.3`
 - `execution_count` are now set to `null` instead of `0`
-- Cleans `outputs` `data` `image/*` trailing newline
