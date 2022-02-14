@@ -1,6 +1,5 @@
-import json
 import os
-import pytest
+
 from random import randint
 
 from wagon_cleaner.run_clean import run_clean
@@ -8,6 +7,7 @@ from wagon_common.helpers.notebook import read_notebook, save_notebook
 
 
 class TestCleanerExecutionCount:
+
     def test_input_execution_count_is_null(self):
         # Set up test
         src_path = os.path.join(os.path.dirname(__file__), 'notebooks', 'base.ipynb')
