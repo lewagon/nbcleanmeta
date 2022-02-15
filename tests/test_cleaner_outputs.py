@@ -19,7 +19,7 @@ class TestCleanerOutputs(TestCleanerBase):
         for cell in code_cells:
             for output in cell.get('outputs', []):
                 for data_key in output.get('data', {}):
-                    if data_key[:6] == 'image/':
+                    if data_key[:10] == 'image/png':
                         assert output['data'][data_key][-1:] == '\n'
 
     def test_outputs_data_trailing_newline_is_removed(self, notebook_path):
@@ -32,5 +32,5 @@ class TestCleanerOutputs(TestCleanerBase):
         for cell in code_cells:
             for output in cell.get('outputs', []):
                 for data_key in output.get('data', {}):
-                    if data_key[:6] == 'image/':
+                    if data_key[:10] == 'image/png':
                         assert output['data'][data_key][-1:] != '\n'
