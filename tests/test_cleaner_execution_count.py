@@ -39,5 +39,5 @@ class TestCleanerExecutionCount(TestCleanerBase):
         clean_content = read_notebook(notebook_path)
         code_cells = self._get_code_cells(clean_content)
         for cell in code_cells:
-            if cell.get('outputs', False) and bool(cell['outputs']):
+            if cell.get('outputs', []):
                 assert cell['outputs'][0]['execution_count'] is None
