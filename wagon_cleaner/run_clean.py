@@ -73,7 +73,7 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
 
             # clean outputs data image trailing newline
             for data_key in output.get("data", {}):
-                if data_key[:9] == "image/png":  # avoid "image/svg+xml" containing a list
+                if data_key == "image/png":  # avoid "image/svg+xml" containing a list
                     output["data"][data_key] = output["data"][data_key].rstrip("\n")
 
         # clean cell metadata
