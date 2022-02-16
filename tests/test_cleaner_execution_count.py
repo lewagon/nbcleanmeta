@@ -19,7 +19,8 @@ class TestCleanerExecutionCount(TestCleanerBase):
         for cell in code_cells:
             assert type(cell['execution_count']) == int
             if cell.get('outputs', []):
-                assert type(cell['outputs'][0]['execution_count']) == int
+                if 'execution_count' in cell['outputs'][0]:
+                    assert type(cell['outputs'][0]['execution_count']) == int
 
     def test_input_execution_count_is_null(self, notebook_path):
         # Act
@@ -40,4 +41,5 @@ class TestCleanerExecutionCount(TestCleanerBase):
         code_cells = self._get_code_cells(clean_content)
         for cell in code_cells:
             if cell.get('outputs', []):
-                assert cell['outputs'][0]['execution_count'] is None
+                if 'execution_count' in cell['outputs'][0]:
+                    assert cell['outputs'][0]['execution_count'] is None
