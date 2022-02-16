@@ -1,4 +1,10 @@
 
+# 0.2.3 (2022-02-15)
+
+### Fixed
+
+- Do not attempt to clean `"image/svg+xml"` images
+
 # 0.2.2 (2022-02-11)
 
 ### Added

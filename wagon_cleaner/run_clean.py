@@ -71,10 +71,9 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
             if "execution_count" in output:
                 output["execution_count"] = None
 
-            # clean outputs data image trailing newline
-            for data_key in output.get("data", {}):
-                if data_key[:6] == "image/":
-                    output["data"][data_key] = output["data"][data_key].rstrip("\n")
+            # clean outputs data image trailing newline (avoid "image/svg+xml")
+            if "image/png" in output.get("data", {}):
+                output["data"]["image/png"] = output["data"]["image/png"].rstrip("\n")
 
         # clean cell metadata
         if "metadata" in cell:
