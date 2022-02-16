@@ -6,7 +6,7 @@ from wagon_common.helpers.notebook import read_notebook
 
 class TestCleanerOutputs(TestCleanerBase):
 
-    def test_outputs_data_trailing_newline_is_present(self, notebook_path):
+    def test_outputs_data_png_image_trailing_newline_is_present(self, notebook_path):
         """
         # test that newlines are present when no action is performed
         """
@@ -21,7 +21,7 @@ class TestCleanerOutputs(TestCleanerBase):
                 if 'image/png' in output.get('data', {}):
                     assert output['data']['image/png'][-1:] == '\n'
 
-    def test_outputs_data_trailing_newline_is_removed(self, notebook_path):
+    def test_outputs_data_png_image_trailing_newline_is_removed(self, notebook_path):
         # Act
         run_clean([notebook_path], False, False, {})
 
