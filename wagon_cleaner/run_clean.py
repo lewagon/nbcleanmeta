@@ -77,7 +77,9 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
 
             # inline outputs data svg image
             if "image/svg+xml" in output.get("data", {}):
-                output["data"]["image/svg+xml"] = ["".join(output["data"]["image/svg+xml"])]
+                svg_image = output["data"]["image/svg+xml"]
+                if type(svg_image) == list:
+                    output["data"]["image/svg+xml"] = "".join(svg_image)
 
         # clean cell metadata
         if "metadata" in cell:
