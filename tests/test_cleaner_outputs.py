@@ -46,7 +46,7 @@ class TestCleanerOutputs(TestCleanerBase):
         for cell in code_cells:
             for output in cell.get('outputs', []):
                 if 'image/svg+xml' in output.get('data', {}):
-                    assert len(output['data']['image/svg+xml']) > 1
+                    assert type(output['data']['image/svg+xml']) == list
 
     def test_outputs_data_svg_image_is_inlined(self, notebook_path):
         # Act
@@ -58,4 +58,4 @@ class TestCleanerOutputs(TestCleanerBase):
         for cell in code_cells:
             for output in cell.get('outputs', []):
                 if 'image/svg+xml' in output.get('data', {}):
-                    assert len(output['data']['image/svg+xml']) == 1
+                    assert type(output['data']['image/svg+xml']) == str
