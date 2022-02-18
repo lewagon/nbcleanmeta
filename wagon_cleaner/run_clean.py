@@ -71,9 +71,15 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
             if "execution_count" in output:
                 output["execution_count"] = None
 
-            # clean outputs data image trailing newline (avoid "image/svg+xml")
+            # clean outputs data png image trailing newline
             if "image/png" in output.get("data", {}):
                 output["data"]["image/png"] = output["data"]["image/png"].rstrip("\n")
+
+            # inline outputs data svg image
+            if "image/svg+xml" in output.get("data", {}):
+                svg_image = output["data"]["image/svg+xml"]
+                if type(svg_image) == list:
+                    output["data"]["image/svg+xml"] = "".join(svg_image)
 
         # clean cell metadata
         if "metadata" in cell:

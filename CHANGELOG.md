@@ -1,9 +1,15 @@
 
+# 0.2.4 (2022-02-16)
+
+### Added
+
+- Inline `"image/svg+xml"` images according to vscode transformation
+
 # 0.2.3 (2022-02-15)
 
 ### Fixed
 
-- Do not attempt to clean `"image/svg+xml"` images
+- Only clean `"image/png"` images trailing newline
 
 # 0.2.2 (2022-02-11)
 
