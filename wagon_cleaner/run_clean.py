@@ -35,8 +35,8 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
     }
 
     # select data and metadata to clean
-    clean_cell_keys = [ DATA[k] for k, v in kwargs.items() if v and k[:5] != "meta_" ]
-    clean_meta_keys = [ DATA[k] for k, v in kwargs.items() if v and k[:5] == "meta_" ]
+    clean_cell_keys = [DATA[k] for k, v in kwargs.items() if v and k[:5] != "meta_"]
+    clean_meta_keys = [DATA[k] for k, v in kwargs.items() if v and k[:5] == "meta_"]
 
     # iterate through cells in order to apply the policies
     delete_cells = []
