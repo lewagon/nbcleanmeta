@@ -47,6 +47,11 @@ def stats(sources, verbose):
     is_flag=True,
     help="Delete \"execution_count\" data from all cells.")
 @click.option(
+    "-i", "--id",                                 # id
+    default=False,
+    is_flag=True,
+    help="Delete \"id\" data from all cells.")
+@click.option(
     "-s", "--meta-scrolled",                      # metadata.scrolled
     default=False,
     is_flag=True,
@@ -89,7 +94,7 @@ def run(sources, verbose, all, delete_notes, **kwargs):
     if all:
 
         # set all suppressions to true
-        kwargs = { k:True for k, _ in kwargs.items() }
+        kwargs = {k: True for k, _ in kwargs.items()}
 
     # format notebook
     run_clean(sources, verbose, delete_notes, kwargs)
