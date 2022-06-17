@@ -66,7 +66,7 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
                 if key == "execution_count":
                     cell[key] = None  # execution_count must not be deleted but set to None
                 else:
-                    del cell[key]
+                    del cell[key]  # remove all non meta keys listed in the parameters (atm the `id` key)
 
         # clean outputs
         for output in cell.get("outputs", []):
