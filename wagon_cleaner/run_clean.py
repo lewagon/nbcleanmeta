@@ -4,6 +4,7 @@ from wagon_common.helpers.notebook import read_notebook, save_notebook
 # correspondance between cli argument and cell data or metadata key name
 DATA = dict(
     execution_count="execution_count",
+    id="id",
     meta_scrolled="scrolled",
     meta_executetime="ExecuteTime",
     meta_hidden="hidden",
@@ -35,8 +36,8 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
     }
 
     # select data and metadata to clean
-    clean_cell_keys = [ DATA[k] for k, v in kwargs.items() if v and k[:5] != "meta_" ]
-    clean_meta_keys = [ DATA[k] for k, v in kwargs.items() if v and k[:5] == "meta_" ]
+    clean_cell_keys = [DATA[k] for k, v in kwargs.items() if v and k[:5] != "meta_"]
+    clean_meta_keys = [DATA[k] for k, v in kwargs.items() if v and k[:5] == "meta_"]
 
     # iterate through cells in order to apply the policies
     delete_cells = []
@@ -62,7 +63,10 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
 
             # set key content
             if key in cell:
-                cell[key] = None  # execution_count must not be deleted but set to None
+                if key == "execution_count":
+                    cell[key] = None  # execution_count must not be deleted but set to None
+                else:
+                    del cell[key]  # remove all non meta keys listed in the parameters (atm the `id` key)
 
         # clean outputs
         for output in cell.get("outputs", []):
