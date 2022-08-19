@@ -1,4 +1,10 @@
 
+# 0.2.6 (2022-08-19)
+
+### Added
+
+- Removes the `vscode` cell metadata
+
 # 0.2.5 (2022-06-14)
 
 ### Added
