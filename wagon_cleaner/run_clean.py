@@ -10,6 +10,7 @@ DATA = dict(
     meta_hidden="hidden",
     meta_collapsed="collapsed",
     meta_heading_collapsed="heading_collapsed",
+    meta_vscode="vscode",
 )
 
 
