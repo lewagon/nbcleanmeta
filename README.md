@@ -1,10 +1,8 @@
 
 # install
 
-from gemfury with `~/.pip/pip.conf`:
-
 ``` bash
-pip install nbcleanmeta
+pip install git+https://github.com/lewagon/nbcleanmeta
 ```
 
 # uninstall

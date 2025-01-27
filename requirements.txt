@@ -2,4 +2,4 @@ click
 colorama
 pytest
 
-wagon_common>=0.2.3
+git+https://github.com/lewagon/python-utilities>=0.2.3
