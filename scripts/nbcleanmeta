@@ -52,6 +52,11 @@ def stats(sources, verbose):
     is_flag=True,
     help="Delete \"id\" data from all cells.")
 @click.option(
+    "-w", "--meta-id",                            # metadata.id
+    default=False,
+    is_flag=True,
+    help="Delete \"id\" metadata from all cells.")
+@click.option(
     "-s", "--meta-scrolled",                      # metadata.scrolled
     default=False,
     is_flag=True,
@@ -81,6 +86,11 @@ def stats(sources, verbose):
     default=False,
     is_flag=True,
     help="Delete \"vscode\" metadata from all cells.")
+@click.option(
+    "-w", "--meta-colab",                         # metadata.colab
+    default=False,
+    is_flag=True,
+    help="Delete \"colab\" metadata from all cells.")
 @click.option(
     "--all/--no-all",
     default=True,

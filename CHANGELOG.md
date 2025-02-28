@@ -1,3 +1,8 @@
+# 0.2.8 (2025-02-28)
+
+### Added
+
+- Removes the `id` and `colab` cell metadata (created by Colab)
 
 # 0.2.7 (2025-01-27)
 

@@ -5,12 +5,14 @@ from wagon_common.helpers.notebook import read_notebook, save_notebook
 DATA = dict(
     execution_count="execution_count",
     id="id",
+    meta_id="id",
     meta_scrolled="scrolled",
     meta_executetime="ExecuteTime",
     meta_hidden="hidden",
     meta_collapsed="collapsed",
     meta_heading_collapsed="heading_collapsed",
     meta_vscode="vscode",
+    meta_colab="colab",
 )
 
 

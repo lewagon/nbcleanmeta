@@ -40,12 +40,14 @@ deleted cell data:
 - `id`
 
 deleted cell metadata:
+- `id`
 - `scrolled`
 - `ExecuteTime`
 - `hidden`
 - `collapsed`
 - `heading_collapsed`
 - `vscode`
+- `colab`
 
 ## stats
 
