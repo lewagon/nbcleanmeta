@@ -36,6 +36,9 @@ nbcleanmeta run --help                  # list options
 processed cell data:
 - `execution_count` (set to 0)
 
+deleted cell data:
+- `id`
+
 deleted cell metadata:
 - `scrolled`
 - `ExecuteTime`
