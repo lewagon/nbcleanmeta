@@ -42,6 +42,7 @@ deleted cell metadata:
 - `hidden`
 - `collapsed`
 - `heading_collapsed`
+- `vscode`
 
 ## stats
 
