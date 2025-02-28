@@ -92,6 +92,11 @@ def stats(sources, verbose):
     is_flag=True,
     help="Delete \"colab\" metadata from all cells.")
 @click.option(
+    "-w", "--meta-editable",                         # metadata.editable
+    default=False,
+    is_flag=True,
+    help="Delete \"editable\" metadata from all cells.")
+@click.option(
     "--all/--no-all",
     default=True,
     help="Clean all supported cell data and metadata (default: all).")

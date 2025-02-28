@@ -48,6 +48,10 @@ deleted cell metadata:
 - `heading_collapsed`
 - `vscode`
 - `colab`
+- `editable`
+- `tags` if empty
+- `slideshow.slide_type` if empty
+- `slideshow` if empty
 
 ## stats
 

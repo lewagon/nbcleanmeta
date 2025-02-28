@@ -3,6 +3,11 @@
 ### Added
 
 - Removes the `id` and `colab` cell metadata (created by Colab)
+- Removes empty cell metadata created by notebook>7.0.0 when one has the Notebook Tools sidepane open:
+  - `editable` cell metadata (configurable on the cli)
+  - `tags` cell metadata if empty (always)
+  - `slideshow.slide_type` cell  metadata if empty (always)
+  - `slideshow` cell  metadata if empty (always)
 
 # 0.2.7 (2025-01-27)
 
