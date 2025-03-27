@@ -41,8 +41,10 @@ deleted cell data:
 
 deleted cell metadata:
 - `id`
+- `outputId`
 - `scrolled`
 - `ExecuteTime`
+- `execution`
 - `hidden`
 - `collapsed`
 - `heading_collapsed`
