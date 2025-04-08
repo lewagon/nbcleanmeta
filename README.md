@@ -36,12 +36,24 @@ nbcleanmeta run --help                  # list options
 processed cell data:
 - `execution_count` (set to 0)
 
+deleted cell data:
+- `id`
+
 deleted cell metadata:
+- `id`
+- `outputId`
 - `scrolled`
 - `ExecuteTime`
+- `execution`
 - `hidden`
 - `collapsed`
 - `heading_collapsed`
+- `vscode`
+- `colab`
+- `editable`
+- `tags` if empty
+- `slideshow.slide_type` if empty
+- `slideshow` if empty
 
 ## stats
 

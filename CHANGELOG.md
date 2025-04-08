@@ -1,3 +1,14 @@
+# 0.2.8 (2025-03-27)
+
+### Added
+
+- Removes the `id`, `outputId` and `colab` cell metadata (created by Colab)
+- Removes empty cell metadata created by notebook>7.0.0 when one has the Notebook Tools sidepane open:
+  - `editable` cell metadata (configurable on the cli)
+  - `tags` cell metadata if empty (always)
+  - `slideshow.slide_type` cell  metadata if empty (always)
+  - `slideshow` cell  metadata if empty (always)
+- Removes `execution` cell metadata created by jupyterlab-execute-time
 
 # 0.2.7 (2025-01-27)
 

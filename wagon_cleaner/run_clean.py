@@ -5,12 +5,17 @@ from wagon_common.helpers.notebook import read_notebook, save_notebook
 DATA = dict(
     execution_count="execution_count",
     id="id",
+    meta_id="id",
+    meta_outputid="outputId",
     meta_scrolled="scrolled",
     meta_executetime="ExecuteTime",
+    meta_execution="execution",
     meta_hidden="hidden",
     meta_collapsed="collapsed",
     meta_heading_collapsed="heading_collapsed",
     meta_vscode="vscode",
+    meta_colab="colab",
+    meta_editable="editable",
 )
 
 
@@ -94,6 +99,19 @@ def edit_notebook(notebook_content, notebook_path, kwargs, delete_notes=False):
                 # delete key
                 if key in cell["metadata"]:
                     del cell["metadata"][key]
+
+            # clean empty metadata added by notebook>7.0.0
+            if "tags" in cell["metadata"]:
+                if len(cell["metadata"]["tags"]) == 0:
+                    del cell["metadata"]["tags"]
+            if "slideshow" in cell["metadata"]:
+                # delete slide_type if empty
+                if ("slide_type" in cell["metadata"]["slideshow"]
+                    and cell["metadata"]["slideshow"]["slide_type"] == ""):
+                        del cell["metadata"]["slideshow"]["slide_type"]
+                # delete slideshow if empty after previous step
+                if len(cell["metadata"]["slideshow"]) == 0:
+                    del cell["metadata"]["slideshow"]
 
     # delete flagged cells
     if delete_notes:
