@@ -52,12 +52,12 @@ def stats(sources, verbose):
     is_flag=True,
     help="Delete \"id\" data from all cells.")
 @click.option(
-    "-w", "--meta-id",                            # metadata.id
+    "--meta-id",                                  # metadata.id
     default=False,
     is_flag=True,
     help="Delete \"id\" metadata from all cells.")
 @click.option(
-    "-w", "--meta-outputid",                            # metadata.outputId
+    "--meta-outputid",                            # metadata.outputId
     default=False,
     is_flag=True,
     help="Delete \"outputId\" metadata from all cells.")
@@ -67,12 +67,12 @@ def stats(sources, verbose):
     is_flag=True,
     help="Delete \"scrolled\" metadata from all cells.")
 @click.option(
-    "-t", "--meta-executetime",                   # metadata.ExecuteTime
+    "--meta-executetime",                         # metadata.ExecuteTime
     default=False,
     is_flag=True,
     help="Delete \"ExecuteTime\" metadata from all cells.")
 @click.option(
-    "-t", "--meta-execution",                     # metadata.execution
+    "--meta-execution",                           # metadata.execution
     default=False,
     is_flag=True,
     help="Delete \"execution\" metadata from all cells.")
@@ -92,17 +92,17 @@ def stats(sources, verbose):
     is_flag=True,
     help="Delete \"heading_collapsed\" metadata from all cells.")
 @click.option(
-    "-w", "--meta-vscode",                        # metadata.vscode
+    "--meta-vscode",                              # metadata.vscode
     default=False,
     is_flag=True,
     help="Delete \"vscode\" metadata from all cells.")
 @click.option(
-    "-w", "--meta-colab",                         # metadata.colab
+    "--meta-colab",                               # metadata.colab
     default=False,
     is_flag=True,
     help="Delete \"colab\" metadata from all cells.")
 @click.option(
-    "-w", "--meta-editable",                         # metadata.editable
+    "--meta-editable",                            # metadata.editable
     default=False,
     is_flag=True,
     help="Delete \"editable\" metadata from all cells.")
